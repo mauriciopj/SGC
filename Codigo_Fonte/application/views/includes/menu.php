@@ -26,9 +26,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url() ?>Membros">
+                            <a class="nav-link" href="<?= base_url() ?>Usuarios">
                                 <span data-feather="file"></span>
-                                Usuarios
+                                Usuários
                             </a>
                         </li>
                         <li class="nav-item">
