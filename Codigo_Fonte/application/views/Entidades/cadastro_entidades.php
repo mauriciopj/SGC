@@ -6,46 +6,46 @@
         </div>
     </div>
     <div class="col-md-12">
-        <form class="form-group" action="<?= base_url()?>Usuarios/cadastrar" method="post">
+        <form>
             <div class="form-group">
                 <label for="nome">Nome Completo:</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o Nome Completo..." required>
+                <input type="text" class="form-control" id="nome" placeholder="Informe o Nome Completo...">
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Informe o CPF..." required>
+                        <input type="text" class="form-control" id="cpf" placeholder="Informe o CPF...">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Informe a Senha..." required>
+                        <input type="password" class="form-control" id="senha" placeholder="Informe a Senha...">
                     </div>                        
                 </div>
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço</label>
-                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Informe o Endereço..."required>
+                <input type="text" class="form-control" id="endereco" placeholder="Informe o Endereço...">
             </div>
             <div class="form-group">
                 <label for="email">E-Mail</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Informe o Email..."required>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Informe o Email...">
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Informe o Telefone..."required>
+                        <input type="text" class="form-control" id="telefone" placeholder="Informe o Telefone...">
                     </div>
                 </div>
                 <div class="col-md-4">
 
                     <div class="form-group">
                         <label for="tipo">Tipo</label>
-                        <select class="form-control" id="tipo" name="tipo" required>
+                        <select class="form-control" id="tipo" name="cargo">
                             <option value="0">--</option>
                             <option value="1">Administrador</option>
                             <option value="2">Gerente</option>
@@ -56,12 +56,11 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="entidade">Entidade</label>
-                        <input type="text" class="form-control" id="entidade" name="entidade" placeholder="Informe a Entidade...">
+                        <input type="text" class="form-control" id="entidade" placeholder="Informe a Entidade...">
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" >Salvar</button>
-            <button type="reset" class="btn btn-default" >Excluir</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
 
     </div>
