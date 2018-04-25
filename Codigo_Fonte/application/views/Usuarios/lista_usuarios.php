@@ -36,10 +36,10 @@
                     <td><?= $usu->senha ?></td>
                     <td><?= $usu->email ?></td>
                     <td><?= $usu->telefone ?></td>
-                    <td><?= $usu->tipo ?> </td>
+                    <td><?= $usu->tipo==1?'Administrador':'Gerente' ?> </td>
                     <td><?= $usu->entidade ?></td>
-                    <td><a href="<?= base_url('usuarios/atualizar/' . $usu->id) ?>" class="btn btn-primary">Atualizar</a></td>
-                    <td><a href="<?= base_url('usuarios/excluir/' . $usu->id) ?>" class="btn btn-danger">Excluir</a></td>
+                    <td><a href="<?= base_url('usuarios/atualizar/' . $usu->id) ?>" class="btn btn-primary btn-group">Atualizar</a></td>
+                    <td><a href="<?= base_url('usuarios/excluir/' . $usu->id) ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente excluir o usuario?')">Excluir</a></td>
 
                 </tr>                
             <?php } ?>

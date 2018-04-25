@@ -31,6 +31,10 @@ class Entidades extends CI_Controller {
         $this->load->view('includes/menu');
         $this->load->view('Entidades/cadastro_entidades');
         $this->load->view('includes/html_footer');
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 1cd68a2a22a1fc45cd28a40cbeae6bb7dcb38ccf
     }
 }
