@@ -19,16 +19,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `SGC`
+-- Banco de dados: `sgc`
 --
+CREATE DATABASE sgc;
 
+USE sgc;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `ENTIDADES`
+-- Estrutura para tabela `entidades`
 --
 
-CREATE TABLE `ENTIDADES` (
+CREATE TABLE `entidades` (
   `id` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
   `cnpj` varchar(14) NOT NULL,
@@ -40,10 +42,10 @@ CREATE TABLE `ENTIDADES` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `USUARIOS`
+-- Estrutura para tabela `usuarios`
 --
 
-CREATE TABLE `USUARIOS` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -54,13 +56,13 @@ CREATE TABLE `USUARIOS` (
 --
 -- Índices de tabela `ENTIDADES`
 --
-ALTER TABLE `ENTIDADES`
+ALTER TABLE `entidades`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `USUARIOS`
 --
-ALTER TABLE `USUARIOS`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -70,13 +72,13 @@ ALTER TABLE `USUARIOS`
 --
 -- AUTO_INCREMENT de tabela `ENTIDADES`
 --
-ALTER TABLE `ENTIDADES`
+ALTER TABLE `entidades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `USUARIOS`
 --
-ALTER TABLE `USUARIOS`
+ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
