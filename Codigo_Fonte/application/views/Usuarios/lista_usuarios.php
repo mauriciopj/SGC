@@ -6,10 +6,10 @@
         </div>
 
         <div class="col-md-2">
-            <a class="btn btn-primary btn-block" href="<?= base_url() ?>Usuarios/cadastro">Novo Usuário</a>             
+            <a class="btn btn-primary btn-block" href="<?= base_url() ?>Usuarios/cadastro">Novo Usuário</a>
         </div>
     </div>
-    
+
 
   <div class="col-md-12">
 
@@ -26,7 +26,7 @@
                 <th>Entidade</th>
                 <th></th>
                 <th></th>
-            </tr>                
+            </tr>
             <?php foreach ($usuarios as $usu) { ?>
                 <tr>
                     <td><?= $usu->id ?></td>
@@ -41,7 +41,7 @@
                     <td><a href="<?= base_url('usuarios/atualizar/' . $usu->id) ?>" class="btn btn-primary btn-group">Atualizar</a></td>
                     <td><a href="<?= base_url('usuarios/excluir/' . $usu->id) ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente excluir o usuario?')">Excluir</a></td>
 
-                </tr>                
+                </tr>
             <?php } ?>
 
         </table>

@@ -6,36 +6,36 @@
         </div>
 
         <div class="col-md-2">
-            <a class="btn btn-primary btn-block" href="<?= base_url() ?>Entidades/cadastro">Nova Entidade</a>             
+            <a class="btn btn-primary btn-block" href="<?= base_url() ?>Entidades/cadastro">Nova Entidade</a>
         </div>
     </div>
-    
+
 
   <div class="col-md-12">
 
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>Entidade</th>                
+                <th>Entidade</th>
                 <th>CNPJ</th>
                 <th>Telefone</th>
+                <th>Email</th>
                 <th>Endereço</th>
-                <th>E-mail</th>                
                 <th></th>
                 <th></th>
-            </tr>                
+            </tr>
             <?php foreach ($entidades as $ent) { ?>
                 <tr>
                     <td><?= $ent->id ?></td>
-                    <td><?= $ent->nome ?></td>                    
+                    <td><?= $ent->nome ?></td>
                     <td><?= $ent->cnpj ?></td>
                     <td><?= $ent->telefone ?></td>
+                    <td><?= $ent->email ?></td>
                     <td><?= $ent->endereco ?></td>
-                    <td><?= $ent->email ?></td>                    
-                    <td><a href="<?= base_url('entidades/atualizar/' . $ent->id) ?>" class="btn btn-primary">Atualizar</a></td>
-                    <td><a href="<?= base_url('entidades/excluir/' . $ent->id) ?>" class="btn btn-danger">Excluir</a></td>
+                    <td><a href="<?= base_url('entidades/atualizar/' . $ent->id) ?>" class="btn btn-primary btn-group">Atualizar</a></td>
+                    <td><a href="<?= base_url('entidades/excluir/' . $ent->id) ?>" class="btn btn-danger btn-group btn-group" onclick="return confirm('Deseja realmente excluir o usuario?')">Excluir</a></td>
 
-                </tr>                
+                </tr>
             <?php } ?>
 
         </table>

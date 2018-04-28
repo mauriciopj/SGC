@@ -22,16 +22,22 @@ class Entidades extends CI_Controller {
     public function index($indice=null) {
         $this->db->select('*');
         $dados['entidades']= $this->db->get('entidades')->result();
-        
-        
+
+
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         if($indice==1){
             $data['msg'] = "Entidade Cadastrada com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==2){            
+            $this->load->view('includes/msg_sucesso',$data);
+        }else if($indice==2){
             $data['msg'] = "Não foi possivel cadastrar a Entidade.";
-            $this->load->view('includes/msg_erro',$data);            
+            $this->load->view('includes/msg_erro',$data);
+        }else if($indice==3){
+            $data['msg'] = "Entidade deletada com Sucesso.";
+            $this->load->view('includes/msg_sucesso',$data);
+        }else if($indice==4){
+            $data['msg'] = "Não foi possivel excluir a Entidade";
+            $this->load->view('includes/msg_erro',$data);
         }
         $this->load->view('Entidades/lista_entidades',$dados);
         $this->load->view('includes/html_footer');
@@ -41,22 +47,34 @@ class Entidades extends CI_Controller {
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('Entidades/cadastro_entidades');
-        $this->load->view('includes/html_footer');        
+        $this->load->view('includes/html_footer');
     }
-    
+
     public function cadastrar(){
-          
-        $data['nome'] = $this->input->post('nome');        
+
+        $data['nome'] = $this->input->post('nome');
         $data['cnpj'] = $this->input->post('cnpj');
         $data['telefone'] = $this->input->post('telefone');
         $data['email'] = $this->input->post('email');
-        $data['endereco'] = $this->input->post('endereco');        
-        
+        $data['endereco'] = $this->input->post('endereco');
+
         if($this->db->insert('entidades',$data)){
             redirect('Entidades/1');
         } else {
             redirect('Entidades/2');
         }
-        
+
+    }
+
+    public function excluir($id=null){
+
+        $this->db->where('id',$id);
+
+        if($this->db->delete('entidades')){
+            redirect('Entidades/3');
+        } else {
+            redirect('Entidades/4');
+        }
+
     }
 }
