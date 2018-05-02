@@ -38,12 +38,18 @@ class Usuarios extends CI_Controller {
         }else if($indice==4){            
             $data['msg'] = "Não foi possivel excluir o Usuário.";
             $this->load->view('includes/msg_erro',$data);            
+        }else if($indice==5){
+            $data['msg'] = "Usuário atualizado com Sucesso.";
+            $this->load->view('includes/msg_sucesso',$data);            
+        }else if($indice==6){            
+            $data['msg'] = "Não foi possivel atualizar o Usuário.";
+            $this->load->view('includes/msg_erro',$data); 
         }
         $this->load->view('Usuarios/lista_usuarios',$dados);
         $this->load->view('includes/html_footer');
     }
 
-    public function cadastro() {
+    public function cadastro(){
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('Usuarios/cadastro_usuarios');
@@ -81,4 +87,38 @@ class Usuarios extends CI_Controller {
         }
         
     }
+    
+    public function atualizar($id=null){
+        $this->db->where('id',$id);
+        $data['usuarios'] = $this->db->get('usuarios')->result();
+        
+        $this->load->view('includes/html_header');
+        $this->load->view('includes/menu');
+        $this->load->view('usuarios/editar_usuarios',$data);
+        $this->load->view('includes/html_footer');      
+        
+    }
+    
+    public function salvar_atualizacao(){
+        
+        $id = $this->input->post('id');
+
+        $data['nome'] = $this->input->post('nome');
+        $data['endereco'] = $this->input->post('endereco');
+        $data['cpf'] = $this->input->post('cpf');
+        $data['email'] = $this->input->post('email');
+        $data['telefone'] = $this->input->post('telefone');
+        $data['tipo'] = $this->input->post('tipo');
+        $data['entidade'] = $this->input->post('entidade');
+        
+        $this->db->where('id', $id);
+        
+        if($this->db->update('usuarios',$data)){
+            redirect('Usuarios/5');
+        } else {
+            redirect('Usuarios/6');
+        }
+        
+    }
+    
 }
