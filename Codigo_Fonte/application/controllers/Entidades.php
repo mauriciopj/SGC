@@ -38,6 +38,12 @@ class Entidades extends CI_Controller {
         }else if($indice==4){
             $data['msg'] = "Não foi possivel excluir a Entidade";
             $this->load->view('includes/msg_erro',$data);
+        }else if($indice==5){
+            $data['msg'] = "O registro foi atualizado com Sucesso.";
+            $this->load->view('includes/msg_sucesso',$data);
+        }else if($indice==6){
+            $data['msg'] = "Não foi possivel atualizar o registro";
+            $this->load->view('includes/msg_erro',$data);
         }
         $this->load->view('Entidades/lista_entidades',$dados);
         $this->load->view('includes/html_footer');
@@ -74,6 +80,37 @@ class Entidades extends CI_Controller {
             redirect('Entidades/3');
         } else {
             redirect('Entidades/4');
+        }
+
+    }
+    
+    public function atualizar($id=null){
+        
+        $this->db->where('id',$id);
+        $data['entidade'] = $this->db->get('entidades')->result();
+        
+        
+        $this->load->view('includes/html_header');
+        $this->load->view('includes/menu');
+        $this->load->view('Entidades/editar_entidade',$data);
+        $this->load->view('includes/html_footer');
+
+    }
+    
+    public function salvar_atualizacao(){
+        $id = $this->input->post('id');
+        
+        $data['nome'] = $this->input->post('nome');
+        $data['cnpj'] = $this->input->post('cnpj');
+        $data['telefone'] = $this->input->post('telefone');
+        $data['email'] = $this->input->post('email');
+        $data['endereco'] = $this->input->post('endereco');
+
+        $this->db->where('id',$id);
+        if($this->db->update('entidades',$data)){
+            redirect('Entidades/5');
+        } else {
+            redirect('Entidades/6');
         }
 
     }

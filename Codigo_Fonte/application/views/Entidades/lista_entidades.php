@@ -32,7 +32,7 @@
                     <td><?= $ent->telefone ?></td>
                     <td><?= $ent->email ?></td>
                     <td><?= $ent->endereco ?></td>
-                    <td><a href="<?= base_url('entidades/atualizar/' . $ent->id) ?>" class="btn btn-primary btn-group">Atualizar</a></td>
+                    <td><a href="<?= base_url('entidades/atualizar/' . $ent->id) ?>" class="btn btn-primary btn-group">Editar</a></td>
                     <td><a href="<?= base_url('entidades/excluir/' . $ent->id) ?>" class="btn btn-danger btn-group btn-group" onclick="return confirm('Deseja realmente excluir o usuario?')">Excluir</a></td>
 
                 </tr>
