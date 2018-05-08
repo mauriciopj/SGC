@@ -37,4 +37,10 @@
                                 Entidades
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>Colaboradores">
+                                <span data-feather="file"></span>
+                                Colaboradores
+                            </a>
+                        </li>
                         </nav>
