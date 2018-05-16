@@ -19,7 +19,15 @@ class Colaboradores extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+   
+   //  public function verifica_sessao() {
+    //    if($this->session->userdata('logado')==false)
+   //         redirect('dashboard/login');
+    //     
+  //  }
+
     public function index($indice=null) {
+     //   $this->verifica_sessao();
         $this->db->select('*');
         $dados['colaboradores']= $this->db->get('colaboradores')->result();
         
@@ -50,6 +58,7 @@ class Colaboradores extends CI_Controller {
     }
 
     public function cadastro(){
+      //  $this->verifica_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('colaboradores/cadastro_colaboradores');
@@ -58,12 +67,15 @@ class Colaboradores extends CI_Controller {
     }
     
     public function cadastrar(){
+      //  $this->verifica_sessao();
           
         $data['nomeCola'] = $this->input->post('nomeCola');
-        $data['enderecoCola'] = $this->input->post('enderecoCola');
         $data['cpfCola'] = $this->input->post('cpfCola');
         $data['emailCola'] = $this->input->post('emailCola');
         $data['telefoneCola'] = $this->input->post('telefoneCola');
+        $data['ruaCola'] = $this->input->post('ruaCola');
+        $data['numeroCola'] = $this->input->post('numeroCola');
+        $data['bairroCola'] = $this->input->post('bairroCola');
         $data['entidadeCola'] = $this->input->post('entidadeCola');
         $data['valorDoadoCola'] = $this->input->post('valorDoadoCola');
         
@@ -76,6 +88,7 @@ class Colaboradores extends CI_Controller {
     }
     
     public function excluir($idCola=null){
+      //  $this->verifica_sessao();
           
         $this->db->where('idCola',$idCola);
         
@@ -88,6 +101,7 @@ class Colaboradores extends CI_Controller {
     }
     
     public function atualizar($idCola=null){
+      //  $this->verifica_sessao();
         $this->db->where('idCola',$idCola);
         $data['colaboradores'] = $this->db->get('colaboradores')->result();
         
@@ -99,14 +113,17 @@ class Colaboradores extends CI_Controller {
     }
     
     public function salvar_atualizacao(){
+       // $this->verifica_sessao();
         
         $idCola = $this->input->post('idCola');
 
         $data['nomeCola'] = $this->input->post('nomeCola');
-        $data['enderecoCola'] = $this->input->post('enderecoCola');
         $data['cpfCola'] = $this->input->post('cpfCola');
         $data['emailCola'] = $this->input->post('emailCola');
         $data['telefoneCola'] = $this->input->post('telefoneCola');
+        $data['ruaCola'] = $this->input->post('ruaCola');
+        $data['numeroCola'] = $this->input->post('numeroCola');
+        $data['bairroCola'] = $this->input->post('bairroCola');
         $data['entidadeCola'] = $this->input->post('entidadeCola');
         $data['valorDoadoCola'] = $this->input->post('valorDoadoCola');
         

@@ -19,7 +19,15 @@ class Entidades extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+    
+  //   public function verifica_sessao() {
+   //     if($this->session->userdata('logado')==false)
+     //       redirect('dashboard/login');
+         
+  //  }
+    
     public function index($indice=null) {
+      //  $this->verifica_sessao();
         $this->db->select('*');
         $dados['entidades']= $this->db->get('entidades')->result();
 
@@ -50,6 +58,7 @@ class Entidades extends CI_Controller {
     }
 
     public function cadastro() {
+       // $this->verifica_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('Entidades/cadastro_entidades');
@@ -57,6 +66,7 @@ class Entidades extends CI_Controller {
     }
 
     public function cadastrar(){
+     //   $this->verifica_sessao();
 
         $data['nome'] = $this->input->post('nome');
         $data['cnpj'] = $this->input->post('cnpj');
@@ -73,6 +83,7 @@ class Entidades extends CI_Controller {
     }
 
     public function excluir($id=null){
+      //  $this->verifica_sessao();
 
         $this->db->where('id',$id);
 
@@ -85,7 +96,7 @@ class Entidades extends CI_Controller {
     }
     
     public function atualizar($id=null){
-        
+       // $this->verifica_sessao();
         $this->db->where('id',$id);
         $data['entidade'] = $this->db->get('entidades')->result();
         
@@ -98,6 +109,7 @@ class Entidades extends CI_Controller {
     }
     
     public function salvar_atualizacao(){
+      //  $this->verifica_sessao();
         $id = $this->input->post('id');
         
         $data['nome'] = $this->input->post('nome');

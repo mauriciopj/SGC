@@ -1,11 +1,11 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.8.0
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 28/04/2018 às 14:55
--- Versão do servidor: 10.1.31-MariaDB
--- Versão do PHP: 7.2.4
+-- Host: 127.0.0.1
+-- Generation Time: 16-Maio-2018 às 22:28
+-- Versão do servidor: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,22 +19,39 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `sgc`
+-- Database: `sgc`
 --
-CREATE DATABASE sgc;
 
-USE sgc;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `entidades`
+-- Estrutura da tabela `colaboradores`
+--
+
+CREATE TABLE `colaboradores` (
+  `idCola` int(11) NOT NULL,
+  `nomeCola` varchar(50) NOT NULL,
+  `cpfCola` varchar(12) NOT NULL,
+  `emailCola` varchar(50) NOT NULL,
+  `telefoneCola` varchar(50) NOT NULL,
+  `ruaCola` varchar(50) NOT NULL,
+  `numeroCola` int(11) NOT NULL,
+  `bairroCola` varchar(50) NOT NULL,
+  `entidadeCola` varchar(150) DEFAULT NULL,
+  `valorDoadoCola` decimal(9,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `entidades`
 --
 
 CREATE TABLE `entidades` (
   `id` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
-  `cnpj` varchar(14) NOT NULL,
-  `telefone` varchar(14) NOT NULL,
+  `cnpj` varchar(150) NOT NULL,
+  `telefone` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `endereco` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,51 +59,64 @@ CREATE TABLE `entidades` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
-  `cpf` varchar(14) NOT NULL,
-  `telefone` varchar(14) NOT NULL,
-  `email` varchar(150) NOT NULL,
   `endereco` varchar(150) NOT NULL,
-  `tipo` int NOT NULL,
-  `senha` varchar(150) NOT NULL
+  `cpf` char(11) NOT NULL,
+  `senha` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
+  `tipo` int(11) NOT NULL,
+  `entidade` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `ENTIDADES`
+-- Indexes for table `colaboradores`
+--
+ALTER TABLE `colaboradores`
+  ADD PRIMARY KEY (`idCola`);
+
+--
+-- Indexes for table `entidades`
 --
 ALTER TABLE `entidades`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `USUARIOS`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `ENTIDADES`
+-- AUTO_INCREMENT for table `colaboradores`
+--
+ALTER TABLE `colaboradores`
+  MODIFY `idCola` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `entidades`
 --
 ALTER TABLE `entidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `USUARIOS`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
