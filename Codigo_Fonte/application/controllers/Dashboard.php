@@ -43,7 +43,7 @@ class Dashboard extends CI_Controller {
     public function logar() {
         
           $email = $this->input->post('email');
-          $senha = $this->input->post('senha');
+          $senha = md5( $this->input->post('senha'));
           
           $this->db->where('email',$email);
           $this->db->where('senha',$senha);

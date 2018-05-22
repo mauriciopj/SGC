@@ -19,7 +19,6 @@
                 <th>Nome</th>
                 <th>Endereço</th>
                 <th>CPF</th>
-                <th>Senha</th>
                 <th>E-mail</th>
                 <th>Telefone</th>
                 <th>Tipo</th>
@@ -33,7 +32,6 @@
                     <td><?= $usu->nome ?></td>
                     <td><?= $usu->endereco ?></td>
                     <td><?= $usu->cpf ?></td>
-                    <td><?= $usu->senha ?></td>
                     <td><?= $usu->email ?></td>
                     <td><?= $usu->telefone ?></td>
                     <td><?= $usu->tipo==1?'Administrador':'Gerente' ?> </td>

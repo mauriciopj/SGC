@@ -19,101 +19,96 @@ class Usuarios extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
-   //  public function verifica_sessao() {
-    //    if($this->session->userdata('logado')==false)
-     //       redirect('dashboard/login');
-         
-  //  }
+      public function verifica_sessao() {
+        if($this->session->userdata('logado')==false)
+           redirect('dashboard/login');
+      }
 
-    
-    public function index($indice=null) {
-     //   $this->verifica_sessao();
+
+    public function index($indice = null) {
+        $this->verifica_sessao();
         $this->db->select('*');
-        $dados['usuarios']= $this->db->get('usuarios')->result();
-        
-        
+        $dados['usuarios'] = $this->db->get('usuarios')->result();
+
+
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        if($indice==1){
+        if ($indice == 1) {
             $data['msg'] = "Usuário Cadastrado com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==2){            
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 2) {
             $data['msg'] = "Não foi possivel cadastrar o Usuário.";
-            $this->load->view('includes/msg_erro',$data);            
-        }else if($indice==3){
+            $this->load->view('includes/msg_erro', $data);
+        } else if ($indice == 3) {
             $data['msg'] = "Usuário excluido com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==4){            
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 4) {
             $data['msg'] = "Não foi possivel excluir o Usuário.";
-            $this->load->view('includes/msg_erro',$data);            
-        }else if($indice==5){
+            $this->load->view('includes/msg_erro', $data);
+        } else if ($indice == 5) {
             $data['msg'] = "Usuário atualizado com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==6){            
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 6) {
             $data['msg'] = "Não foi possivel atualizar o Usuário.";
-            $this->load->view('includes/msg_erro',$data); 
+            $this->load->view('includes/msg_erro', $data);
         }
-        $this->load->view('Usuarios/lista_usuarios',$dados);
+        $this->load->view('Usuarios/lista_usuarios', $dados);
         $this->load->view('includes/html_footer');
     }
 
-    public function cadastro(){
-      //  $this->verifica_sessao();
+    public function cadastro() {
+        $this->verifica_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('Usuarios/cadastro_usuarios');
         $this->load->view('includes/html_footer');
-        
     }
-    
-    public function cadastrar(){
-       // $this->verifica_sessao();
-          
+
+    public function cadastrar() {
+        $this->verifica_sessao();
+
         $data['nome'] = $this->input->post('nome');
         $data['endereco'] = $this->input->post('endereco');
         $data['cpf'] = $this->input->post('cpf');
-        $data['senha'] = $this->input->post('senha');
+        $data['senha'] = md5($this->input->post('senha'));
         $data['email'] = $this->input->post('email');
         $data['telefone'] = $this->input->post('telefone');
         $data['tipo'] = $this->input->post('tipo');
         $data['entidade'] = $this->input->post('entidade');
-        
-        if($this->db->insert('usuarios',$data)){
+
+        if ($this->db->insert('usuarios', $data)) {
             redirect('Usuarios/1');
         } else {
             redirect('Usuarios/2');
         }
-        
     }
-    
-    public function excluir($id=null){
-    //    $this->verifica_sessao();
-          
-        $this->db->where('id',$id);
-        
-        if($this->db->delete('usuarios')){
+
+    public function excluir($id = null) {
+        $this->verifica_sessao();
+
+        $this->db->where('id', $id);
+
+        if ($this->db->delete('usuarios')) {
             redirect('Usuarios/3');
         } else {
             redirect('Usuarios/4');
         }
-        
     }
-    
-    public function atualizar($id=null){
-      //  $this->verifica_sessao();
-        $this->db->where('id',$id);
+
+    public function atualizar($id = null) {
+        $this->verifica_sessao();
+        $this->db->where('id', $id);
         $data['usuarios'] = $this->db->get('usuarios')->result();
-        
+
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        $this->load->view('usuarios/editar_usuarios',$data);
-        $this->load->view('includes/html_footer');      
-        
+        $this->load->view('usuarios/editar_usuarios', $data);
+        $this->load->view('includes/html_footer');
     }
-    
-    public function salvar_atualizacao(){
-       // $this->verifica_sessao();
-        
+
+    public function salvar_atualizacao() {
+        $this->verifica_sessao();
+
         $id = $this->input->post('id');
 
         $data['nome'] = $this->input->post('nome');
@@ -123,15 +118,14 @@ class Usuarios extends CI_Controller {
         $data['telefone'] = $this->input->post('telefone');
         $data['tipo'] = $this->input->post('tipo');
         $data['entidade'] = $this->input->post('entidade');
-        
+
         $this->db->where('id', $id);
-        
-        if($this->db->update('usuarios',$data)){
+
+        if ($this->db->update('usuarios', $data)) {
             redirect('Usuarios/5');
         } else {
             redirect('Usuarios/6');
         }
-        
     }
-    
+
 }

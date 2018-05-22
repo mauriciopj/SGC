@@ -19,56 +19,53 @@ class Colaboradores extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
-   
-   //  public function verifica_sessao() {
-    //    if($this->session->userdata('logado')==false)
-   //         redirect('dashboard/login');
-    //     
-  //  }
+    public function verifica_sessao() {
+        if ($this->session->userdata('logado') == false)
+            redirect('dashboard/login');
+    }
 
-    public function index($indice=null) {
-     //   $this->verifica_sessao();
+    public function index($indice = null) {
+        $this->verifica_sessao();
         $this->db->select('*');
-        $dados['colaboradores']= $this->db->get('colaboradores')->result();
-        
-        
+        $dados['colaboradores'] = $this->db->get('colaboradores')->result();
+
+
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        if($indice==1){
+        if ($indice == 1) {
             $data['msg'] = "Colaborador Cadastrado com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==2){            
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 2) {
             $data['msg'] = "Não foi possivel cadastrar o Colaborador.";
-            $this->load->view('includes/msg_erro',$data);            
-        }else if($indice==3){
+            $this->load->view('includes/msg_erro', $data);
+        } else if ($indice == 3) {
             $data['msg'] = "Colaborador excluido com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==4){            
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 4) {
             $data['msg'] = "Não foi possivel excluir o Colaborador.";
-            $this->load->view('includes/msg_erro',$data);            
-        }else if($indice==5){
+            $this->load->view('includes/msg_erro', $data);
+        } else if ($indice == 5) {
             $data['msg'] = "Colaborador atualizado com Sucesso.";
-            $this->load->view('includes/msg_sucesso',$data);            
-        }else if($indice==6){            
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 6) {
             $data['msg'] = "Não foi possivel atualizar o Colaborador.";
-            $this->load->view('includes/msg_erro',$data); 
+            $this->load->view('includes/msg_erro', $data);
         }
-        $this->load->view('colaboradores/lista_colaboradores',$dados);
+        $this->load->view('colaboradores/lista_colaboradores', $dados);
         $this->load->view('includes/html_footer');
     }
 
-    public function cadastro(){
-      //  $this->verifica_sessao();
+    public function cadastro() {
+        $this->verifica_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('colaboradores/cadastro_colaboradores');
         $this->load->view('includes/html_footer');
-        
     }
-    
-    public function cadastrar(){
-      //  $this->verifica_sessao();
-          
+
+    public function cadastrar() {
+        $this->verifica_sessao();
+
         $data['nomeCola'] = $this->input->post('nomeCola');
         $data['cpfCola'] = $this->input->post('cpfCola');
         $data['emailCola'] = $this->input->post('emailCola');
@@ -78,43 +75,40 @@ class Colaboradores extends CI_Controller {
         $data['bairroCola'] = $this->input->post('bairroCola');
         $data['entidadeCola'] = $this->input->post('entidadeCola');
         $data['valorDoadoCola'] = $this->input->post('valorDoadoCola');
-        
-        if($this->db->insert('colaboradores',$data)){
+
+        if ($this->db->insert('colaboradores', $data)) {
             redirect('colaboradores/1');
         } else {
             redirect('colaboradores/2');
         }
-        
     }
-    
-    public function excluir($idCola=null){
-      //  $this->verifica_sessao();
-          
-        $this->db->where('idCola',$idCola);
-        
-        if($this->db->delete('colaboradores')){
+
+    public function excluir($idCola = null) {
+        $this->verifica_sessao();
+
+        $this->db->where('idCola', $idCola);
+
+        if ($this->db->delete('colaboradores')) {
             redirect('colaboradores/3');
         } else {
             redirect('colaboradores/4');
         }
-        
     }
-    
-    public function atualizar($idCola=null){
-      //  $this->verifica_sessao();
-        $this->db->where('idCola',$idCola);
+
+    public function atualizar($idCola = null) {
+        $this->verifica_sessao();
+        $this->db->where('idCola', $idCola);
         $data['colaboradores'] = $this->db->get('colaboradores')->result();
-        
+
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        $this->load->view('colaboradores/editar_colaboradores',$data);
-        $this->load->view('includes/html_footer');      
-        
+        $this->load->view('colaboradores/editar_colaboradores', $data);
+        $this->load->view('includes/html_footer');
     }
-    
-    public function salvar_atualizacao(){
-       // $this->verifica_sessao();
-        
+
+    public function salvar_atualizacao() {
+        $this->verifica_sessao();
+
         $idCola = $this->input->post('idCola');
 
         $data['nomeCola'] = $this->input->post('nomeCola');
@@ -126,15 +120,14 @@ class Colaboradores extends CI_Controller {
         $data['bairroCola'] = $this->input->post('bairroCola');
         $data['entidadeCola'] = $this->input->post('entidadeCola');
         $data['valorDoadoCola'] = $this->input->post('valorDoadoCola');
-        
+
         $this->db->where('idCola', $idCola);
-        
-        if($this->db->update('colaboradores',$data)){
+
+        if ($this->db->update('colaboradores', $data)) {
             redirect('colaboradores/5');
         } else {
             redirect('colaboradores/6');
         }
-        
     }
-    
+
 }

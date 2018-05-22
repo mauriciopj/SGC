@@ -17,7 +17,9 @@
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Endereço</th>
+                <th>Rua</th>
+                <th>Numero</th>
+                <th>Bairro</th>
                 <th>CPF</th>
                 <th>E-mail</th>
                 <th>Telefone</th>
@@ -30,7 +32,9 @@
                 <tr>
                     <td><?= $cola->idCola ?></td>
                     <td><?= $cola->nomeCola ?></td>
-                    <td><?= $cola->enderecoCola ?></td>
+                    <td><?= $cola->ruaCola ?></td>
+                    <td><?= $cola->numeroCola ?></td>
+                    <td><?= $cola->bairroCola ?></td>
                     <td><?= $cola->cpfCola ?></td>
                     <td><?= $cola->emailCola ?></td>
                     <td><?= $cola->telefoneCola ?></td>

@@ -27,9 +27,25 @@
                     </div>                  
                 </div>
             </div>
-            <div class="form-group">
-                <label for="enderecoCola">Endereço</label>
-                <input type="text" class="form-control" id="enderecoCola" name="enderecoCola" placeholder="Informe o Endereço..." value="<?= $colaboradores[0]->enderecoCola ?>"required>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="ruaCola">Rua:</label>
+                        <input type="text" class="form-control" id="ruaCola" name="ruaCola" placeholder="Informe a Rua..."  value="<?= $colaboradores[0]->ruaCola ?>" required>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="numeroCola">Numero:</label>
+                        <input type="email" class="form-control" id="numeroCola" name="numeroCola"  value="<?= $colaboradores[0]->numeroCola ?>" required>
+                    </div>                       
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="bairroCola">Bairro</label>
+                        <input type="text" class="form-control" id="bairroCola" name="bairroCola" placeholder="Informe o Bairro..." value="<?= $colaboradores[0]->bairroCola ?>" required>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
