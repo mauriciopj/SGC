@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Entidades extends CI_Controller {
+class Setor extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -27,22 +27,22 @@ class Entidades extends CI_Controller {
     public function index($indice = null) {
         $this->verifica_sessao();
         $this->db->select('*');
-        $dados['entidades'] = $this->db->get('entidades')->result();
+        $dados['setores'] = $this->db->get('setores')->result();
 
 
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         if ($indice == 1) {
-            $data['msg'] = "Entidade Cadastrada com Sucesso.";
+            $data['msg'] = "Setor Cadastrado com Sucesso.";
             $this->load->view('includes/msg_sucesso', $data);
         } else if ($indice == 2) {
-            $data['msg'] = "Não foi possivel cadastrar a Entidade.";
+            $data['msg'] = "Não foi possivel cadastrar o Setor.";
             $this->load->view('includes/msg_erro', $data);
         } else if ($indice == 3) {
-            $data['msg'] = "Entidade deletada com Sucesso.";
+            $data['msg'] = "Setor deletado com Sucesso.";
             $this->load->view('includes/msg_sucesso', $data);
         } else if ($indice == 4) {
-            $data['msg'] = "Não foi possivel excluir a Entidade";
+            $data['msg'] = "Não foi possivel excluir o Setor";
             $this->load->view('includes/msg_erro', $data);
         } else if ($indice == 5) {
             $data['msg'] = "O registro foi atualizado com Sucesso.";
@@ -51,7 +51,7 @@ class Entidades extends CI_Controller {
             $data['msg'] = "Não foi possivel atualizar o registro";
             $this->load->view('includes/msg_erro', $data);
         }
-        $this->load->view('Entidades/lista_entidades', $dados);
+        $this->load->view('Setor/lista_setores', $dados);
         $this->load->view('includes/html_footer');
     }
 
@@ -59,7 +59,7 @@ class Entidades extends CI_Controller {
         $this->verifica_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        $this->load->view('Entidades/cadastro_entidades');
+        $this->load->view('Setor/cadastro_setores');
         $this->load->view('includes/html_footer');
     }
 
@@ -72,10 +72,10 @@ class Entidades extends CI_Controller {
         $data['email'] = $this->input->post('email');
         $data['endereco'] = $this->input->post('endereco');
 
-        if ($this->db->insert('entidades', $data)) {
-            redirect('Entidades/1');
+        if ($this->db->insert('setor', $data)) {
+            redirect('Setor/1');
         } else {
-            redirect('Entidades/2');
+            redirect('Setor/2');
         }
     }
 
@@ -84,22 +84,22 @@ class Entidades extends CI_Controller {
 
         $this->db->where('id', $id);
 
-        if ($this->db->delete('entidades')) {
-            redirect('Entidades/3');
+        if ($this->db->delete('setor')) {
+            redirect('Setor/3');
         } else {
-            redirect('Entidades/4');
+            redirect('Setor/4');
         }
     }
 
     public function atualizar($id = null) {
         $this->verifica_sessao();
         $this->db->where('id', $id);
-        $data['entidade'] = $this->db->get('entidades')->result();
+        $data['setor'] = $this->db->get('setores')->result();
 
 
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        $this->load->view('Entidades/editar_entidade', $data);
+        $this->load->view('Setor/editar_setor', $data);
         $this->load->view('includes/html_footer');
     }
 
@@ -114,10 +114,10 @@ class Entidades extends CI_Controller {
         $data['endereco'] = $this->input->post('endereco');
 
         $this->db->where('id', $id);
-        if ($this->db->update('entidades', $data)) {
-            redirect('Entidades/5');
+        if ($this->db->update('setor', $data)) {
+            redirect('Setor/5');
         } else {
-            redirect('Entidades/6');
+            redirect('Setor/6');
         }
     }
 

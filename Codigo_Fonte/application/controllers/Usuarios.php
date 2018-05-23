@@ -19,14 +19,14 @@ class Usuarios extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
-      public function verifica_sessao() {
+      public function verificar_sessao() {
         if($this->session->userdata('logado')==false)
            redirect('dashboard/login');
       }
 
 
     public function index($indice = null) {
-        $this->verifica_sessao();
+        $this->verificar_sessao();
         $this->db->select('*');
         $dados['usuarios'] = $this->db->get('usuarios')->result();
 
@@ -57,7 +57,7 @@ class Usuarios extends CI_Controller {
     }
 
     public function cadastro() {
-        $this->verifica_sessao();
+        $this->verificar_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('Usuarios/cadastro_usuarios');
@@ -65,7 +65,7 @@ class Usuarios extends CI_Controller {
     }
 
     public function cadastrar() {
-        $this->verifica_sessao();
+        $this->verificar_sessao();
 
         $data['nome'] = $this->input->post('nome');
         $data['endereco'] = $this->input->post('endereco');
@@ -84,7 +84,7 @@ class Usuarios extends CI_Controller {
     }
 
     public function excluir($id = null) {
-        $this->verifica_sessao();
+        $this->verificar_sessao();
 
         $this->db->where('id', $id);
 
@@ -96,7 +96,7 @@ class Usuarios extends CI_Controller {
     }
 
     public function atualizar($id = null) {
-        $this->verifica_sessao();
+        $this->verificar_sessao();
         $this->db->where('id', $id);
         $data['usuarios'] = $this->db->get('usuarios')->result();
 
@@ -107,7 +107,7 @@ class Usuarios extends CI_Controller {
     }
 
     public function salvar_atualizacao() {
-        $this->verifica_sessao();
+        $this->verificar_sessao();
 
         $id = $this->input->post('id');
 
