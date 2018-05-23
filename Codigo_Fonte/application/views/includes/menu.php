@@ -43,4 +43,10 @@
                                 Colaboradores
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>Setor">
+                                <span data-feather="file"></span>
+                                Setores
+                            </a>
+                        </li>
                         </nav>
