@@ -63,6 +63,29 @@ CREATE TABLE `entidades` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `setores`
+--
+
+CREATE TABLE `setores` (
+  `id` int(11) NOT NULL,
+  `descricao` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `bairros`
+--
+
+CREATE TABLE `bairros` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(150) NOT NULL,
+  `setor` int(11)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuarios`
 --
 
