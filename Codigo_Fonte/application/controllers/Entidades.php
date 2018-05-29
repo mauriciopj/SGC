@@ -79,18 +79,7 @@ class Entidades extends CI_Controller {
         }
     }
 
-    public function excluir($id = null) {
-        $this->verificar_sessao();
-
-        $this->db->where('id', $id);
-
-        if ($this->db->delete('entidades')) {
-            redirect('Entidades/3');
-        } else {
-            redirect('Entidades/4');
-        }
-    }
-
+  
     public function atualizar($id = null) {
         $this->verificar_sessao();
         $this->db->where('id', $id);
