@@ -7,13 +7,25 @@
     </div>
     <div class="col-md-12">
         <form class="form-group" action="<?= base_url()?>Setor/cadastrar" method="post">
-            <div class="form-group">
-                <label for="nome">Descrição:</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o nome do Setor...">
-            </div>           
-            <div class="form-group">
-                <label for="endereco">Bairros Disponíveis para o Setor:</label>
-                <textarea type="textarea" rows="8" class="form-control" id="endereco" name="endereco" placeholder="Informe o Endereço..."> </textarea>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="nome">Descrição:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o nome do Setor...">
+                </div>                       
+                <div class="col-md-5 form-group">
+                    <label for="bairros">Bairros Disponíveis para o Setor:</label>
+                    <select multiple name="bairro[]" id="bairro" class="form-control" required>
+                        <option value="0">  </option> 
+                        <?php foreach($bairros as $bairro){ ?>
+                        <option value="<?= $bairro->id?>"> <?= $bairro->nome; ?> </option>
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="col-md-7 form-group"><br><br>
+                    <form class="form-group" action="<?= base_url()?>Setor/incluirBairro" method="post">
+                        <button type="submit" class="btn btn-success">Novo Bairro</button>
+                    </form>
+                </div>
             </div>
             <button type="submit" class="btn btn-success">Salvar</button>
             <button type="reset" class="btn btn-default" >Cancelar</button>
