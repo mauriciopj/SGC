@@ -33,11 +33,21 @@ class Setor extends CI_Controller {
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         if ($indice == 1) {
-            $data['msg'] = "Setor Cadastrado com Sucesso.";
-            $this->load->view('includes/msg_sucesso', $data);
+            if ($indice == 1){
+                $data['msg'] = "Setor Cadastrado com Sucesso.";
+                $this->load->view('includes/msg_sucesso', $data);
+            } else if ($indice == 1.1){
+                $data['msg'] = "Bairro Cadastrado com Sucesso.";
+                $this->load->view('includes/msg_sucesso', $data);
+            }
         } else if ($indice == 2) {
-            $data['msg'] = "Não foi possivel cadastrar o Setor.";
-            $this->load->view('includes/msg_erro', $data);
+            if ($indice == 2){
+                $data['msg'] = "Não foi possivel cadastrar o Setor.";
+                $this->load->view('includes/msg_erro', $data);
+            } else if ($indice == 2.1){
+                $data['msg'] = "Não foi possivel cadastrar o Bairro.";
+                $this->load->view('includes/msg_sucesso', $data);
+            }
         } else if ($indice == 3) {
             $data['msg'] = "Setor deletado com Sucesso.";
             $this->load->view('includes/msg_sucesso', $data);
@@ -55,27 +65,45 @@ class Setor extends CI_Controller {
         $this->load->view('includes/html_footer');
     }
 
-    public function cadastro() {
+    public function cadastro() {    
         $this->verifica_sessao();
+        $dados['bairros'] = $this->db->get('bairros')->result();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
-        $this->load->view('Setor/cadastro_setores');
+        $this->load->view('Setor/cadastro_setores',$dados);
         $this->load->view('includes/html_footer');
     }
 
     public function cadastrar() {
-        $this->verifica_sessao();
-
-        $data['nome'] = $this->input->post('nome');
-        $data['cnpj'] = $this->input->post('cnpj');
-        $data['telefone'] = $this->input->post('telefone');
-        $data['email'] = $this->input->post('email');
-        $data['endereco'] = $this->input->post('endereco');
+        $this->verifica_sessao();                    
+        $data['id'] = $this->input->post('id');
+        $data['descricao'] = $this->input->post('descricao');
+        $bairros=$_POST["bairros"]; 
+        for($i=0;$i<count($bairros);$i++){
+            $bairros[$i->setor] = $data['id'];
+            $this->db->insert('bairros', $data);
+        }
 
         if ($this->db->insert('setor', $data)) {
             redirect('Setor/1');
         } else {
             redirect('Setor/2');
+        }
+    }
+    
+    public function incluirBairro(){
+        $this->load->view('includes/html_header');
+        $this->load->view('includes/menu');
+        $this->load->view('Setor/cadastro_fds',$dados);
+        $this->load->view('includes/html_footer');
+        $data['id'] = $this->input->post('id');
+        $data['nome'] = $this->input->post('nome');
+        $data['setor'] = 0;
+
+        if ($this->db->insert('bairros', $data)) {
+            redirect('Setor/1.1');
+        } else {
+            redirect('Setor/2.1');
         }
     }
 
